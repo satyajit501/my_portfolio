@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Satyajit Sahoo, Azure Data Engineer with 3.6 years of experience in Microsoft Fabric, Azure Databricks, Azure Data Factory and lakehouse architecture.">
+<title>Satyajit Sahoo | Azure Data Engineer</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<noscript><style>#boot{display:none}.rise,.rv,.stage,.hero h1{opacity:1!important;transform:none!important}body.booting{overflow:auto}</style></noscript>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#050B1A; --panel:#0A1633; --ink:#EAF1FF; --muted:#9BB0D0; --line:rgba(140,170,220,.17);
+  --azure:#3B9CFF; --cyan:#22D3EE; --violet:#8B7CFF; --amber:#FFB547; --green:#3DDC97;
+  --bronze:#C77B3E; --silver:#9DB2CC; --gold:#E8B53A;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.booting{overflow:hidden}
+h1,h2,h3{font-family:'Bricolage Grotesque','IBM Plex Sans',system-ui,sans-serif;line-height:1.08;margin:0;letter-spacing:-.025em}
+p{margin:0}
+a{color:inherit}
+button{font:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:#000;padding:8px 14px;border-radius:6px;z-index:300}
+.skip:focus{left:8px}
+
+/* ---------- ambient background ---------- */
+.aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.aurora i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.34;will-change:transform}
+.aurora i:nth-child(1){width:46vmax;height:46vmax;left:-12vmax;top:-10vmax;background:#1D5FD1;animation:drift1 26s ease-in-out infinite alternate}
+.aurora i:nth-child(2){width:38vmax;height:38vmax;right:-10vmax;top:26vh;background:#6D4BE8;animation:drift2 32s ease-in-out infinite alternate}
+.aurora i:nth-child(3){width:34vmax;height:34vmax;left:22vw;bottom:-16vmax;background:#0E9BB8;animation:drift1 38s ease-in-out infinite alternate-reverse}
+.glow{position:fixed;left:0;top:0;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;background:radial-gradient(circle,rgba(59,156,255,.15),transparent 66%);pointer-events:none;z-index:1;transition:transform .18s ease-out;transform:translate3d(-999px,-999px,0)}
+main,footer{position:relative;z-index:2}
+
+/* ---------- boot overlay ---------- */
+#boot{position:fixed;inset:0;z-index:200;background:#030814;display:flex;align-items:center;justify-content:center;padding:24px;transition:transform .9s cubic-bezier(.7,0,.2,1);cursor:pointer}
+#boot.out{transform:translateY(-100%)}
+.term{width:min(600px,100%);border:1px solid rgba(140,170,220,.22);border-radius:14px;background:#060F24;box-shadow:0 30px 90px rgba(0,0,0,.6),0 0 60px rgba(59,156,255,.12);overflow:hidden}
+.term-h{display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:1px solid rgba(140,170,220,.16);font:400 12.5px 'JetBrains Mono',monospace;color:#6F87A8}
+.term-h i{width:10px;height:10px;border-radius:50%;background:#2A3C5E}
+.term-h span{margin-left:8px}
+#bootOut{padding:18px 20px 8px;font:400 13.5px/1.85 'JetBrains Mono',monospace;color:#B8CAE6;min-height:236px;white-space:pre-wrap}
+#bootOut .cmd{color:#EAF1FF}
+#bootOut .tag{color:var(--azure)}
+#bootOut .ok{color:var(--green)}
+.boot-bar{height:3px;background:rgba(255,255,255,.06)}
+.boot-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--azure),var(--cyan));transition:width .25s}
+.boot-skip{text-align:center;margin-top:14px;font-size:13px;color:#587099;position:absolute;bottom:26px;left:0;right:0}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:60;background:rgba(5,11,26,.68);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1200px;margin:0 auto;padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font:700 19px 'Bricolage Grotesque',sans-serif;text-decoration:none;letter-spacing:-.01em}
+.nav-links{display:flex;align-items:center;gap:24px;font-size:15px}
+.nav-links a{text-decoration:none;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-links a.hire{color:#04101F;background:linear-gradient(135deg,var(--azure),var(--cyan));padding:6px 16px;border-radius:999px;font-weight:600}
+.nav-bar{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,var(--azure),var(--cyan),var(--violet))}
+@media(max-width:760px){.nav-links a:not(.hire){display:none}}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-block;padding:13px 26px;border-radius:12px;font-weight:600;font-size:16px;text-decoration:none;border:0;cursor:pointer;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .2s,opacity .2s;will-change:transform}
+.btn-p{background:linear-gradient(135deg,var(--azure),var(--cyan));color:#04101F;box-shadow:0 10px 36px rgba(59,156,255,.35)}
+.btn-p:hover{box-shadow:0 14px 46px rgba(34,211,238,.45)}
+.btn-s{background:rgba(255,255,255,.04);border:1px solid rgba(155,176,208,.4);color:var(--ink)}
+.btn-s:hover{border-color:#fff}
+.btn[disabled]{opacity:.55;cursor:default}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden}
+#net{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(5,11,26,.86) 0%,rgba(5,11,26,.5) 40%,transparent 66%),linear-gradient(180deg,transparent 72%,var(--bg) 100%)}
+.hero-grid{position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:120px 24px 110px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:7px 15px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);font-size:14px;color:var(--muted)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(61,220,151,.6);animation:ping 1.8s infinite;flex:none}
+.hero h1{margin-top:24px;font-size:clamp(50px,7.4vw,104px);font-weight:700;line-height:.96;letter-spacing:-.04em;opacity:0;transition:opacity .4s;background:linear-gradient(100deg,#fff 15%,#A9D2FF 55%,#22D3EE 100%);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.06em}
+body.ready .hero h1{opacity:1}
+.role{margin-top:14px;font:600 clamp(24px,3vw,36px)/1.15 'Bricolage Grotesque',sans-serif;letter-spacing:-.015em;color:#DCE9FF}
+.typed{margin-top:14px;font-size:clamp(18px,2vw,22px);color:var(--muted);min-height:1.7em}
+.typed b{color:var(--cyan);font-weight:500}
+.caret{display:inline-block;width:2px;height:1.1em;background:var(--cyan);margin-left:3px;vertical-align:-.18em;animation:blink 1s steps(1) infinite}
+.cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px}
+.rise{opacity:0}
+body.ready .rise{animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:var(--d,0s)}
+
+.stage{position:relative;width:min(100%,340px);justify-self:center;opacity:0}
+body.ready .stage{animation:stageIn 1.3s cubic-bezier(.2,.8,.2,1) .35s forwards}
+.orbit{position:absolute;left:50%;top:50%;width:150%;aspect-ratio:1;margin:-75% 0 0 -75%;animation:spin 34s linear infinite;pointer-events:none;z-index:3}
+.orbit::before{content:"";position:absolute;inset:0;border:1px dashed rgba(90,170,255,.28);border-radius:50%}
+.orbit::after{content:"";position:absolute;inset:11%;border:1px solid rgba(139,124,255,.18);border-radius:50%}
+.slot{position:absolute;inset:0;transform:rotate(var(--a))}
+.badge{position:absolute;top:0;left:50%;transform:translate(-50%,-50%) rotate(calc(-1 * var(--a)));animation:cs 34s linear infinite;display:flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;background:rgba(8,18,42,.88);border:1px solid rgba(90,170,255,.4);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);font-size:13px;font-weight:600;white-space:nowrap;box-shadow:0 10px 26px rgba(0,0,0,.4)}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--c,var(--azure))}
+.tilt{position:relative;z-index:2;transform-style:preserve-3d;transition:transform .25s ease-out;will-change:transform}
+.frame{position:relative;padding:3px;border-radius:32px;overflow:hidden;background:#0C1E3A;box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 90px rgba(59,156,255,.22)}
+.frame::before{content:"";position:absolute;inset:-60%;background:conic-gradient(from 0deg,transparent 0 50%,var(--azure) 68%,var(--violet) 84%,var(--cyan) 100%);animation:spin 6s linear infinite}
+.frame-in{position:relative;border-radius:29px;overflow:hidden;background:#0A1B36;aspect-ratio:4/5}
+.photo-btn{display:block;position:relative;width:100%;height:100%;padding:0;border:0;background:none;color:inherit}
+.photo-btn img{width:100%;height:100%;object-fit:cover;display:block}
+.sil{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#8FB6E6;font-size:15px;font-weight:500;background:linear-gradient(160deg,#10305E,#08172E)}
+.sil .mono{font:700 clamp(72px,9vw,110px)/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.04em;background:linear-gradient(120deg,#fff,#7DBBFF 55%,#22D3EE);-webkit-background-clip:text;background-clip:text;color:transparent}
+.glare{position:absolute;inset:0;background:radial-gradient(380px circle at var(--gx,50%) var(--gy,30%),rgba(255,255,255,.24),transparent 55%);mix-blend-mode:overlay;pointer-events:none;opacity:0;transition:opacity .3s}
+.tilt.on .glare{opacity:1}
+.frame-in .run{position:absolute;left:12px;right:12px;bottom:12px;padding:10px 14px;border-radius:12px;pointer-events:none;background:rgba(5,11,26,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(90,170,255,.3);font-size:13px;line-height:1.35;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.frame-in .run b{font-weight:600;display:flex;align-items:center;gap:8px}
+.frame-in .run span{color:var(--muted);font-variant-numeric:tabular-nums}
+.cue{position:absolute;left:50%;bottom:26px;z-index:3;width:24px;height:38px;margin-left:-12px;border:1.5px solid rgba(155,176,208,.5);border-radius:14px}
+.cue::after{content:"";position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:3px;background:var(--cyan);animation:cue 1.8s ease-in-out infinite}
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:64px;padding-top:110px;padding-bottom:90px}
+  .hero::after{background:linear-gradient(180deg,rgba(5,11,26,.7) 0%,transparent 50%,var(--bg) 100%)}
+  .stage{width:min(72%,290px)}
+  .orbit{width:124%;margin:-62% 0 0 -62%}
+  .badge{padding:4px 10px;font-size:12px}
+  .cue{display:none}
+}
+
+/* ---------- marquee ---------- */
+.marquee{border-block:1px solid var(--line);background:rgba(5,11,26,.6);overflow:hidden;padding:20px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;width:max-content;animation:marq 42s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{display:flex;align-items:center;gap:56px;padding-left:56px;font:600 22px 'Bricolage Grotesque',sans-serif;color:#C9DAF4;white-space:nowrap}
+.track span::after{content:"";width:7px;height:7px;background:var(--azure);transform:rotate(45deg)}
+
+/* ---------- sections ---------- */
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.sec{padding:112px 0;position:relative}
+.sec h2{font-size:clamp(32px,5vw,58px);font-weight:700;letter-spacing:-.032em;max-width:16em}
+.sec .intro{margin-top:16px;max-width:38em;color:var(--muted)}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+
+.about{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:start;margin-top:40px}
+.about-txt{max-width:33em}
+.about p+p{margin-top:16px}
+.code{background:#050E22;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 30px 90px rgba(59,156,255,.13)}
+.code-h{padding:11px 18px;border-bottom:1px solid var(--line);font:400 13px 'JetBrains Mono',monospace;color:#7F97B8}
+.code pre{margin:0;padding:18px 20px 22px;overflow-x:auto;font:400 13.5px/1.75 'JetBrains Mono',ui-monospace,monospace}
+.ln{display:block;min-height:1.75em;white-space:pre;opacity:0}
+.code.in .ln{animation:ln .45s ease forwards;animation-delay:calc(var(--i)*75ms)}
+.k{color:#7CB8FF}.s{color:#FFC078}.c{color:#6F87A8;font-style:italic}
+@media(max-width:860px){.about{grid-template-columns:1fr;gap:36px}}
+
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:84px;padding-top:36px;border-top:1px solid var(--line)}
+.num{font:700 clamp(44px,5.6vw,72px)/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.04em;background:linear-gradient(120deg,#fff,#7DBBFF 60%,#22D3EE);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+.m p{margin-top:10px;color:var(--muted);font-size:15.5px;max-width:14em;line-height:1.45}
+.m i{display:block;height:2px;margin-top:18px;background:linear-gradient(90deg,var(--azure),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform 1.5s cubic-bezier(.2,.8,.2,1) .2s}
+.m.in i{transform:scaleX(1)}
+@media(max-width:760px){.metrics{grid-template-columns:1fr 1fr;row-gap:40px}}
+
+/* ---------- pipeline lab ---------- */
+.lab{margin-top:44px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.012));overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.35)}
+.lab-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 18px}
+.lab-title{display:flex;align-items:center;gap:12px;font-weight:600;font-size:15px}
+.state{padding:3px 12px;border-radius:999px;font-size:13px;font-weight:600;background:rgba(155,176,208,.14);color:var(--muted)}
+.state.run{background:rgba(34,211,238,.14);color:var(--cyan)}
+.state.ok{background:rgba(61,220,151,.14);color:var(--green)}
+.lab-btns{display:flex;gap:8px}
+.lab-btns .btn{padding:8px 18px;font-size:14.5px;border-radius:10px}
+.prog{height:3px;background:rgba(255,255,255,.06)}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--azure),var(--cyan));transition:width .5s}
+.dag{position:relative;margin:22px 18px}
+.dag svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.dag .base{fill:none;stroke:#2B4674;stroke-width:2}
+.dag .act{fill:none;stroke:var(--cyan);stroke-width:2.6;transition:stroke-dashoffset .7s ease;filter:drop-shadow(0 0 5px rgba(34,211,238,.6))}
+.dag .pkt{fill:#fff;filter:drop-shadow(0 0 7px #22D3EE)}
+.task{position:absolute;height:56px;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:#0A1633;transition:border-color .3s,box-shadow .3s}
+.task b{display:block;font:500 12.5px 'JetBrains Mono',monospace;color:#DCE8FA;padding-right:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.task small{display:block;margin-top:3px;font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.task i{position:absolute;right:10px;top:10px;width:11px;height:11px;border-radius:50%;border:2px solid #3A4E73}
+.task.run{border-color:var(--cyan);box-shadow:0 0 0 1px rgba(34,211,238,.3),0 0 28px rgba(34,211,238,.25)}
+.task.run i{border-color:rgba(34,211,238,.25);border-top-color:var(--cyan);animation:spin .7s linear infinite}
+.task.ok{border-color:rgba(61,220,151,.55)}
+.task.ok i{background:var(--green);border-color:var(--green)}
+.console{border-top:1px solid var(--line);background:#030916;font:400 13px/1.75 'JetBrains Mono',monospace;height:250px;overflow:auto;padding:14px 18px;color:#B5C7E3}
+.console div{white-space:pre-wrap;word-break:break-word}
+.console .t{color:#587099}
+.console .lv{font-weight:500}
+.lv.info{color:var(--azure)}.lv.ok{color:var(--green)}.lv.done{color:var(--amber)}
+.console .idle{color:#587099}
+
+.lab.wide{width:min(1320px,100vw - 40px);margin-left:calc(50% - min(1320px,100vw - 40px)/2)}
+.btn.auto{transform:scale(.93);box-shadow:0 0 0 7px rgba(34,211,238,.35),0 10px 36px rgba(59,156,255,.35)}
+.legend{display:flex;flex-wrap:wrap;gap:20px;padding:14px 18px 0;font-size:13.5px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:16px;height:3px;border-radius:2px}
+.task{padding-left:17px}
+.task::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:0 3px 3px 0;background:var(--lc,var(--line))}
+.task.rt{--lc:var(--cyan)}
+.task.bt{--lc:var(--amber)}
+.platform{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 18px 20px;padding-top:16px;border-top:1px dashed var(--line)}
+.platform em{font-style:normal;font-size:13px;font-weight:600;color:var(--muted);margin-right:6px}
+.pchip{display:flex;align-items:center;gap:8px;padding:4px 13px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--muted);transition:color .4s,border-color .4s,background .4s}
+.pchip i{width:7px;height:7px;border-radius:50%;background:#3A4E73;transition:background .4s,box-shadow .4s}
+.pchip.on{color:#DDE9FB;border-color:rgba(61,220,151,.5);background:rgba(61,220,151,.08)}
+.pchip.on i{background:var(--green);box-shadow:0 0 8px var(--green)}
+
+/* ---------- stack ---------- */
+.bands{margin-top:44px;display:grid;gap:14px}
+.band{display:grid;grid-template-columns:210px 1fr;gap:24px;padding:24px 28px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-left:4px solid var(--c);align-items:start;transition:border-color .3s,background .3s,transform .3s}
+.band:hover{background:rgba(255,255,255,.055);transform:translateX(6px)}
+.band h3{font-size:24px;font-weight:700}
+.band .sub{font-size:14px;color:var(--muted);margin-top:4px}
+.band p{color:var(--muted);font-size:16px;margin-bottom:10px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{padding:4px 13px;border-radius:999px;background:rgba(59,156,255,.12);border:1px solid rgba(59,156,255,.22);color:#B9D8FF;font-weight:500;font-size:14px;transition:background .2s,transform .2s}
+.tags span:hover{background:rgba(59,156,255,.26);transform:translateY(-2px)}
+@media(max-width:720px){.band{grid-template-columns:1fr;gap:10px}}
+
+/* ---------- experience ---------- */
+.tl{position:relative;padding-left:38px;margin-top:52px;max-width:780px}
+.tl::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:var(--line)}
+.tl-fill{position:absolute;left:7px;top:10px;width:2px;height:0;background:linear-gradient(180deg,var(--azure),var(--cyan),var(--violet));border-radius:2px;box-shadow:0 0 14px rgba(34,211,238,.6)}
+.job{position:relative;padding-bottom:48px}
+.job:last-child{padding-bottom:0}
+.job::before{content:"";position:absolute;left:-38px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);box-shadow:0 0 14px rgba(34,211,238,.5)}
+.job h3{font-size:26px;font-weight:700}
+.meta{color:var(--muted);font-size:15px;margin:4px 0 12px}
+.job ul{margin:0;padding-left:20px}
+.job li{margin:7px 0;max-width:40em}
+
+/* ---------- projects ---------- */
+.pgrid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;margin-top:48px}
+.pcw{display:flex}
+.pcw:first-child{grid-row:span 2}
+.pc{position:relative;flex:1;padding:30px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));overflow:hidden;transition:transform .18s ease-out,border-color .3s;will-change:transform;display:flex;flex-direction:column}
+.pc::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(59,156,255,.22),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.pc:hover::before{opacity:1}
+.pc:hover{border-color:rgba(59,156,255,.5)}
+.pc>*{position:relative}
+.pc h3{font-size:26px;font-weight:700}
+.pc p{color:var(--muted);margin-top:8px;max-width:36em}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:18px}
+.node{padding:3px 11px;border:1px solid var(--line);border-radius:6px;background:rgba(5,11,26,.6);font-size:13.5px;font-weight:500}
+.link{width:24px;height:2px;opacity:.5;background:repeating-linear-gradient(90deg,var(--cyan) 0 5px,transparent 5px 10px);background-size:10px 2px}
+.pc:hover .link{opacity:1;animation:dash .5s linear infinite}
+.spark{margin-top:26px;width:100%;height:96px;display:block}
+.spark path{fill:none;stroke:var(--cyan);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:520;stroke-dashoffset:520;filter:drop-shadow(0 0 6px rgba(34,211,238,.6))}
+.pcw.in .spark path{animation:draw 2.4s ease .3s forwards}
+.spark-cap{font-size:13.5px;color:var(--muted);margin-top:4px}
+.result{margin-top:auto;padding-top:24px}
+.result strong{display:block;font:700 27px/1.15 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em;background:linear-gradient(120deg,#fff,#7DBBFF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.result span{display:block;margin-top:6px;color:var(--muted);font-size:14.5px}
+.result a{display:inline-block;margin-top:12px;font-size:14.5px;font-weight:600;color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(34,211,238,.4)}
+@media(max-width:860px){.pgrid{grid-template-columns:1fr}.pcw:first-child{grid-row:auto}}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:44px}
+.two h3{font-size:22px;margin-bottom:14px}
+.two ul{list-style:none;margin:0;padding:0}
+.two li{padding:14px 0;border-top:1px solid var(--line)}
+.two li:last-child{border-bottom:1px solid var(--line)}
+.two small{display:block;color:var(--muted);font-size:14.5px}
+@media(max-width:760px){.two{grid-template-columns:1fr;gap:36px}}
+
+.contact{text-align:left}
+.status{display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;font-weight:500;font-size:15px;color:var(--muted)}
+.mail{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.contact-list{margin:44px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.contact-list a{display:block;padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03);text-decoration:none;transition:border-color .25s,transform .25s,background .25s}
+.contact-list a:hover{border-color:var(--cyan);transform:translateY(-3px);background:rgba(34,211,238,.06)}
+.contact-list small{display:block;color:var(--muted);font-size:13.5px}
+.contact-list b{font-weight:600;word-break:break-word}
+footer{padding:30px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);background:rgba(5,11,26,.7)}
+.toast{position:fixed;left:50%;bottom:28px;z-index:120;transform:translate(-50%,30px);opacity:0;padding:11px 20px;border-radius:12px;background:#0E2247;border:1px solid rgba(34,211,238,.5);font-size:15px;font-weight:500;pointer-events:none;transition:opacity .3s,transform .3s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- logos ---------- */
+.lg{display:block;flex:none;width:18px;height:18px;object-fit:contain}
+.badge .lg{width:20px;height:20px}
+.tk{display:flex;align-items:center;gap:14px;font-style:normal}
+.tk .lg{width:30px;height:30px}
+.tags span{display:inline-flex;align-items:center;gap:8px}
+.tags span:has(.lg){padding-left:10px}
+.tags .lg{width:17px;height:17px}
+.node{display:inline-flex;align-items:center;gap:8px}
+.node .lg{width:17px;height:17px}
+.task .lgc{position:absolute;left:-10px;top:-10px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#0E2247;border:1px solid rgba(140,170,220,.32);box-shadow:0 4px 12px rgba(0,0,0,.45);z-index:2}
+.task .lgc .lg{width:17px;height:17px}
+.task.run .lgc{border-color:var(--cyan)}
+.task.ok .lgc{border-color:rgba(61,220,151,.6)}
+.pchip .lg{width:15px;height:15px;filter:grayscale(1);opacity:.55;transition:filter .4s,opacity .4s}
+.pchip.on .lg{filter:none;opacity:1}
+.job-h{display:flex;align-items:flex-start;gap:16px}
+.job-h>div{min-width:0}
+.clogo{flex:none;height:76px;padding:7px 9px;margin-top:2px;border-radius:15px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.12)}
+.clogo img{display:block;height:62px;width:auto;max-width:168px;object-fit:contain}
+@media(max-width:520px){.clogo{height:58px;padding:5px 7px;border-radius:12px}.clogo img{height:48px;max-width:104px}.job-h{gap:12px}}
+
+/* ---------- keyframes ---------- */
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes stageIn{from{opacity:0;transform:scale(.9) translateY(24px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes cs{from{transform:translate(-50%,-50%) rotate(calc(-1 * var(--a)))}to{transform:translate(-50%,-50%) rotate(calc(-1 * var(--a) - 360deg))}}
+@keyframes ln{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@keyframes dash{to{background-position:10px 0}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes ping{70%{box-shadow:0 0 0 9px rgba(61,220,151,0)}100%{box-shadow:0 0 0 0 rgba(61,220,151,0)}}
+@keyframes blink{50%{opacity:0}}
+@keyframes cue{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes drift1{to{transform:translate(9vw,7vh) scale(1.15)}}
+@keyframes drift2{to{transform:translate(-8vw,-9vh) scale(1.2)}}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important}
+  .rise,.stage,.rv,.ln,.hero h1{opacity:1!important;transform:none!important}
+  .m i{transform:none!important;transition:none}
+  .spark path{stroke-dashoffset:0}
+  .track{flex-wrap:wrap;width:auto}
+}
+</style>
+</head>
+<body class="booting">
+<a class="skip" href="#about">Skip to content</a>
+
+<!-- ============ BOOT ============ -->
+<div id="boot" aria-hidden="true">
+  <div class="term">
+    <div class="term-h"><i></i><i></i><i></i><span>portfolio.py</span></div>
+    <div id="bootOut"></div>
+    <div class="boot-bar"><i id="bootBar"></i></div>
+  </div>
+  <div class="boot-skip">Click anywhere to skip</div>
+</div>
+
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="glow" id="glow" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">Satyajit Sahoo</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#about">About</a><a href="#pipeline">Pipeline</a><a href="#stack">Stack</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a class="hire" href="#contact">Let's connect</a>
+    </nav>
+  </div>
+  <div class="nav-bar" id="navBar"></div>
+</header>
+
+<main id="top">
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero" aria-label="Introduction">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="hero-grid">
+    <div>
+      <div class="pill rise" style="--d:.1s"><i class="dot"></i>3.6 years in Azure data engineering</div>
+      <h1 id="name" data-text="Satyajit Sahoo">Satyajit Sahoo</h1>
+      <p class="role rise" style="--d:.55s">Azure Data Engineer</p>
+      <p class="typed rise" style="--d:.7s">I build <b id="typed"></b><i class="caret"></i></p>
+      <div class="cta rise" style="--d:.85s">
+        <a class="btn btn-p" data-mag href="#pipeline">Run my pipeline</a>
+        <a class="btn btn-s" data-mag href="#contact">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="orbit" aria-hidden="true">
+        <div class="slot" style="--a:0deg"><span class="badge" style="--c:#3B9CFF"><img class="lg" src="assets/logos/tech/azure.svg" alt="" width="20" height="20" decoding="async">Azure</span></div>
+        <div class="slot" style="--a:60deg"><span class="badge" style="--c:#FFB547"><img class="lg" src="assets/logos/tech/spark.svg" alt="" width="20" height="20" decoding="async">PySpark</span></div>
+        <div class="slot" style="--a:120deg"><span class="badge" style="--c:#3DDC97"><img class="lg" src="assets/logos/tech/python.svg" alt="" width="20" height="20" decoding="async">Python</span></div>
+        <div class="slot" style="--a:180deg"><span class="badge" style="--c:#22D3EE"><img class="lg" src="assets/logos/tech/sql.svg" alt="" width="20" height="20" decoding="async">SQL</span></div>
+        <div class="slot" style="--a:240deg"><span class="badge" style="--c:#FF6B5B"><img class="lg" src="assets/logos/tech/databricks.svg" alt="" width="20" height="20" decoding="async">Databricks</span></div>
+        <div class="slot" style="--a:300deg"><span class="badge" style="--c:#8B7CFF"><img class="lg" src="assets/logos/fabric/fabric.svg" alt="" width="20" height="20" decoding="async">Fabric</span></div>
+      </div>
+      <div class="tilt" id="tilt">
+        <div class="frame">
+          <div class="frame-in">
+            <div class="photo-btn" id="photoBtn">
+              <img id="photoImg" src="photo.jpg" alt="Portrait of Satyajit Sahoo" hidden>
+              <div class="sil" id="sil" aria-hidden="true"><span class="mono">SS</span></div>
+            </div>
+            <div class="glare"></div>
+            <div class="run" aria-hidden="true">
+              <b><i class="dot"></i>Pipeline run succeeded</b>
+              <span>rows served <em id="rows" style="font-style:normal">4,182,930</em></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cue" aria-hidden="true"></div>
+</section>
+
+<div class="marquee" aria-label="Technologies">
+  <div class="track" id="track"></div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <h2 class="rv" data-t="Data platforms that run reliably">Data platforms that run reliably</h2>
+    <div class="about">
+      <div class="about-txt rv">
+        <p>I'm an Azure data engineer with 3.6 years of experience building scalable data platforms on Microsoft Fabric, Azure Databricks, Azure Data Factory, and Data Lake technologies.</p>
+        <p>I design enterprise ETL and ELT pipelines, ingest data from SAP systems, APIs, and industrial IoT devices, and build lakehouse architectures that deliver curated datasets for analytics and business intelligence.</p>
+        <p>Right now I'm at Jindal Stainless, working on Digital SmartFactory 4.0. I bring factory, SAP, and IoT data together in Microsoft Fabric for real-time and batch reporting.</p>
+      </div>
+      <div class="code rv" id="code" style="--d:.15s" role="img" aria-label="PySpark example: reading a raw SAP extract, cleaning it, and merging it into a Delta table">
+        <div class="code-h">sap_orders_silver.py</div>
+        <pre id="codeBody"></pre>
+      </div>
+    </div>
+    <div class="metrics">
+      <div class="m rv"><div class="num" data-to="3.6" data-dec="1" data-suf="+">0</div><p>years of experience in Azure data engineering</p><i></i></div>
+      <div class="m rv" style="--d:.1s"><div class="num" data-to="4" data-suf="">0</div><p>organizations, from consulting to manufacturing</p><i></i></div>
+      <div class="m rv" style="--d:.2s"><div class="num" data-to="3" data-suf="">0</div><p>core platforms: Fabric, Databricks, and Data Factory</p><i></i></div>
+      <div class="m rv" style="--d:.3s"><div class="num" data-to="5" data-suf="&#9733;">0</div><p>Python rating on HackerRank</p><i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PIPELINE LAB ============ -->
+<section class="sec" id="pipeline">
+  <div class="wrap">
+    <h2 class="rv" data-t="Watch a pipeline run">Watch a pipeline run</h2>
+    <p class="intro rv">A simulated run of the kind of architecture I work on. Real-time factory data (through Eventhouse) and batch SAP data both land in the Bronze layer of Microsoft Fabric, then move through silver and gold to reports and apps. It starts by itself when you scroll here, and you can run it again.</p>
+    <div class="lab wide rv" id="lab">
+      <div class="lab-bar">
+        <div class="lab-title">smartfactory_pipeline <span class="state" id="state">Idle</span></div>
+        <div class="lab-btns">
+          <button class="btn btn-p" id="runBtn" type="button">Run pipeline</button>
+          <button class="btn btn-s" id="resetBtn" type="button">Reset</button>
+        </div>
+      </div>
+      <div class="prog"><i id="prog"></i></div>
+      <div class="legend" aria-hidden="true"><span><i style="background:var(--cyan)"></i>Real-time path</span><span><i style="background:var(--amber)"></i>Batch path (bronze, silver, gold)</span></div>
+      <div class="dag" id="dag" role="img" aria-label="Pipeline graph with two paths. Real-time: Ignition, IoT Hub, Event Streams, Eventhouse, Activator, alerts. Batch: SAP S/4HANA, Data Factory. Eventhouse and Data Factory both feed Bronze, then Silver, Gold, and Power BI with apps."></div>
+      <div class="platform" id="platform" aria-label="Platform services"><em>Platform</em></div>
+      <div class="console" id="con" role="log" aria-label="Pipeline logs"><div class="idle">Press Run pipeline to start a job.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section class="sec" id="stack">
+  <div class="wrap">
+    <h2 class="rv" data-t="How my stack fits together">How my stack fits together</h2>
+    <p class="intro rv">I build with Medallion architecture: bronze, silver, and gold layers. Each layer has one job, and these are the tools I use at each step.</p>
+    <div class="bands">
+      <div class="band rv" style="--c:var(--bronze)">
+        <div><h3>Ingest</h3><div class="sub">Bronze layer</div></div>
+        <div><p>Land raw data from SAP systems, APIs, files, and industrial IoT devices.</p>
+          <div class="tags"><span><img class="lg" src="assets/logos/azure/data-factory.svg" alt="" width="17" height="17" decoding="async">Azure Data Factory</span><span><img class="lg" src="assets/logos/azure/iot-hub.svg" alt="" width="17" height="17" decoding="async">Azure IoT Hub</span><span><img class="lg" src="assets/logos/azure/event-hubs.svg" alt="" width="17" height="17" decoding="async">Azure Event Hub</span><span><img class="lg" src="assets/logos/azure/adls-gen2.svg" alt="" width="17" height="17" decoding="async">ADLS Gen2</span><span><img class="lg" src="assets/logos/azure/blob-storage.svg" alt="" width="17" height="17" decoding="async">Azure Blob Storage</span><span><img class="lg" src="assets/logos/concepts/api-ingest.svg" alt="" width="17" height="17" decoding="async">SAP and API ingestion</span><span><img class="lg" src="assets/logos/tech/mqtt.svg" alt="" width="17" height="17" decoding="async">MQTT</span><span><img class="lg" src="assets/logos/tech/ignition.svg" alt="" width="17" height="17" decoding="async">Ignition</span><span><img class="lg" src="assets/logos/concepts/kepware.svg" alt="" width="17" height="17" decoding="async">Kepware</span></div></div>
+      </div>
+      <div class="band rv" style="--c:var(--silver);--d:.08s">
+        <div><h3>Transform</h3><div class="sub">Silver layer</div></div>
+        <div><p>Clean and reshape data with incremental loads, partitioning, and Delta Lake.</p>
+          <div class="tags"><span><img class="lg" src="assets/logos/tech/spark.svg" alt="" width="17" height="17" decoding="async">PySpark</span><span><img class="lg" src="assets/logos/tech/databricks.svg" alt="" width="17" height="17" decoding="async">Azure Databricks</span><span><img class="lg" src="assets/logos/tech/spark.svg" alt="" width="17" height="17" decoding="async">Spark SQL</span><span><img class="lg" src="assets/logos/tech/delta-lake.svg" alt="" width="17" height="17" decoding="async">Delta Lake</span><span><img class="lg" src="assets/logos/tech/parquet.svg" alt="" width="17" height="17" decoding="async">Parquet</span><span><img class="lg" src="assets/logos/concepts/etl-elt.svg" alt="" width="17" height="17" decoding="async">ETL and ELT</span><span><img class="lg" src="assets/logos/concepts/incremental.svg" alt="" width="17" height="17" decoding="async">Incremental loads</span><span><img class="lg" src="assets/logos/concepts/partitioning.svg" alt="" width="17" height="17" decoding="async">Partitioning</span></div></div>
+      </div>
+      <div class="band rv" style="--c:var(--gold);--d:.16s">
+        <div><h3>Serve</h3><div class="sub">Gold layer</div></div>
+        <div><p>Publish curated datasets and real-time views for analytics and reporting.</p>
+          <div class="tags"><span><img class="lg" src="assets/logos/fabric/lakehouse.svg" alt="" width="17" height="17" decoding="async">Microsoft Fabric Lakehouse</span><span><img class="lg" src="assets/logos/fabric/eventhouse.svg" alt="" width="17" height="17" decoding="async">Eventhouse</span><span><img class="lg" src="assets/logos/azure/kql.svg" alt="" width="17" height="17" decoding="async">KQL</span><span><img class="lg" src="assets/logos/fabric/event-streams.svg" alt="" width="17" height="17" decoding="async">Event Streams</span><span><img class="lg" src="assets/logos/fabric/data-pipelines.svg" alt="" width="17" height="17" decoding="async">Fabric Data Pipelines</span><span><img class="lg" src="assets/logos/azure/sql-database.svg" alt="" width="17" height="17" decoding="async">Azure SQL Database</span><span><img class="lg" src="assets/logos/fabric/data-warehouse.svg" alt="" width="17" height="17" decoding="async">Data warehousing</span><span><img class="lg" src="assets/logos/tech/power-bi.svg" alt="" width="17" height="17" decoding="async">Power BI (basic)</span></div></div>
+      </div>
+      <div class="band rv" style="--c:var(--azure);--d:.24s">
+        <div><h3>Foundations</h3><div class="sub">Every layer</div></div>
+        <div><p>The everyday tools that keep pipelines reviewable and repeatable.</p>
+          <div class="tags"><span><img class="lg" src="assets/logos/tech/python.svg" alt="" width="17" height="17" decoding="async">Python</span><span><img class="lg" src="assets/logos/tech/sql.svg" alt="" width="17" height="17" decoding="async">SQL</span><span><img class="lg" src="assets/logos/tech/git.svg" alt="" width="17" height="17" decoding="async">Git</span><span><img class="lg" src="assets/logos/tech/azure-devops.svg" alt="" width="17" height="17" decoding="async">Azure DevOps</span><span><img class="lg" src="assets/logos/concepts/cicd.svg" alt="" width="17" height="17" decoding="async">CI/CD</span><span><img class="lg" src="assets/logos/tech/hadoop.svg" alt="" width="17" height="17" decoding="async">Hadoop</span><span><img class="lg" src="assets/logos/tech/json.svg" alt="" width="17" height="17" decoding="async">JSON</span><span><img class="lg" src="assets/logos/tech/csv.svg" alt="" width="17" height="17" decoding="async">CSV</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="sec" id="experience">
+  <div class="wrap">
+    <h2 class="rv" data-t="Experience">Experience</h2>
+    <div class="tl" id="tl">
+      <div class="tl-fill" id="tlFill"></div>
+      <article class="job rv">
+        <div class="job-h">
+          <span class="clogo"><img class="co" src="assets/logos/companies/jindal-stainless.png" alt="Jindal Stainless logo" decoding="async"></span>
+          <div><h3>Executive</h3>
+          <p class="meta">Jindal Stainless Ltd, Jajpur Road, Odisha. May 2026 to present. Project: Digital SmartFactory 4.0</p></div>
+        </div>
+        <ul>
+          <li>Build end-to-end data pipelines that bring together SAP, industrial and SCADA data, APIs, and IoT telemetry for analytics and reporting.</li>
+          <li>Implement Medallion architecture (bronze, silver, gold) with Microsoft Fabric Lakehouse and Delta Lake.</li>
+          <li>Develop Eventhouse and KQL, Event Streams, notebooks, and ETL/ELT workflows for real-time and batch manufacturing data.</li>
+          <li>Ingest industrial IoT data through Ignition, Kepware, MQTT, Azure IoT Hub, and Event Hub.</li>
+          <li>Support IoT Hub migration, device onboarding, networking, private endpoints, DNS, access management, monitoring, and production troubleshooting.</li>
+        </ul>
+      </article>
+      <article class="job rv">
+        <div class="job-h">
+          <span class="clogo"><img class="co" src="assets/logos/companies/ey.png" alt="Ernst &amp; Young logo" decoding="async"></span>
+          <div><h3>Associate Consultant</h3>
+          <p class="meta">Ernst &amp; Young, Ahmedabad (payroll: Brisa Technologies). Jan 2026 to May 2026. Client: India's largest conglomerate (confidential)</p></div>
+        </div>
+        <ul>
+          <li>Worked as a Databricks engineer and built ingestion pipelines that extract data from SAP systems and external APIs.</li>
+          <li>Built scalable ETL/ELT pipelines in Azure Databricks (PySpark) that turn raw data into curated datasets.</li>
+          <li>Implemented Medallion architecture for structured, governed analytics data.</li>
+          <li>Optimized Spark workloads with partitioning, caching, and efficient joins to improve pipeline performance.</li>
+          <li>Delivered business-ready datasets to analytics and reporting teams, and kept enterprise pipelines monitored and reliable.</li>
+        </ul>
+      </article>
+      <article class="job rv">
+        <div class="job-h">
+          <span class="clogo"><img class="co" src="assets/logos/companies/merino-consulting.png" alt="Merino Consulting Services logo" decoding="async"></span>
+          <div><h3>Associate Consultant</h3>
+          <p class="meta">Merino Consulting Services, New Delhi. Jun 2023 to Nov 2025</p></div>
+        </div>
+        <ul>
+          <li>Designed and automated ETL pipelines in Azure Data Factory to ingest structured and unstructured data from multiple sources, improving data availability.</li>
+          <li>Built and optimized transformation workflows in Azure Databricks (PySpark), reducing batch processing time.</li>
+          <li>Implemented incremental load strategies, partitioning, and Delta Lake optimizations that improved query performance.</li>
+          <li>Set up end-to-end monitoring and alerts in Azure Data Factory, cutting pipeline downtime.</li>
+        </ul>
+      </article>
+      <article class="job rv">
+        <div class="job-h">
+          <span class="clogo"><img class="co" src="assets/logos/companies/innomatics.png" alt="Innomatics Research Labs logo" decoding="async"></span>
+          <div><h3>Data Science Trainee</h3>
+          <p class="meta">Innomatics Research Labs, Hyderabad. Jan 2023 to May 2023</p></div>
+        </div>
+        <ul>
+          <li>Ran exploratory data analysis on large datasets using Python (Pandas, NumPy, Matplotlib, Seaborn).</li>
+          <li>Optimized SQL queries for data extraction and reporting.</li>
+          <li>Built interactive Power BI dashboards for KPIs such as customer trends and sales performance.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="sec" id="projects">
+  <div class="wrap">
+    <h2 class="rv" data-t="Projects">Projects</h2>
+    <div class="pgrid">
+      <div class="pcw rv">
+        <article class="pc">
+          <h3>Digital SmartFactory 4.0</h3>
+          <p>A Microsoft Fabric data platform for Jindal Stainless. It combines SAP, SCADA, API, and IoT telemetry data for real-time and batch manufacturing analytics.</p>
+          <div class="flow" aria-label="Pipeline flow"><span class="node"><img class="lg" src="assets/logos/azure/iot-hub.svg" alt="" width="17" height="17" decoding="async">IoT Hub</span><i class="link"></i><span class="node"><img class="lg" src="assets/logos/fabric/event-streams.svg" alt="" width="17" height="17" decoding="async">Event Streams</span><i class="link"></i><span class="node"><img class="lg" src="assets/logos/fabric/eventhouse.svg" alt="" width="17" height="17" decoding="async">Eventhouse (KQL)</span><i class="link"></i><span class="node"><img class="lg" src="assets/logos/fabric/lakehouse.svg" alt="" width="17" height="17" decoding="async">Lakehouse</span></div>
+          <svg class="spark" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,72 C22,66 34,30 62,40 S104,78 130,50 S176,8 208,30 S262,62 300,18"/></svg>
+          <div class="spark-cap">Illustration of a live telemetry stream</div>
+          <div class="result"><strong>Factory floor to reports</strong><span>Medallion architecture with Delta Lake, plus IoT ingestion through Ignition, Kepware, and MQTT</span></div>
+        </article>
+      </div>
+      <div class="pcw rv" style="--d:.1s">
+        <article class="pc">
+          <h3>Enterprise Data Lake, Retail</h3>
+          <p>Data Factory pipelines and PySpark transformations in Databricks that process daily sales data.</p>
+          <div class="flow" aria-label="Pipeline flow"><span class="node"><img class="lg" src="assets/logos/azure/data-factory.svg" alt="" width="17" height="17" decoding="async">Data Factory</span><i class="link"></i><span class="node"><img class="lg" src="assets/logos/tech/databricks.svg" alt="" width="17" height="17" decoding="async">Databricks (PySpark)</span><i class="link"></i><span class="node"><img class="lg" src="assets/logos/concepts/report.svg" alt="" width="17" height="17" decoding="async">Sales reports</span></div>
+          <div class="result"><strong>Faster ETL and reporting</strong><span>from tuning Spark jobs with partitioning, caching, and efficient joins</span></div>
+        </article>
+      </div>
+      <div class="pcw rv" style="--d:.2s">
+        <article class="pc">
+          <h3>Cloud Data Migration, Retail</h3>
+          <p>Moved on-premises SQL Server and SSIS workflows to Azure, with product, inventory, and sales data flowing through automated pipelines.</p>
+          <div class="flow" aria-label="Pipeline flow"><span class="node"><img class="lg" src="assets/logos/tech/sql-server.svg" alt="" width="17" height="17" decoding="async">SQL Server + SSIS</span><i class="link"></i><span class="node"><img class="lg" src="assets/logos/azure/data-factory.svg" alt="" width="17" height="17" decoding="async">Data Factory</span><i class="link"></i><span class="node"><img class="lg" src="assets/logos/azure/adls-gen2.svg" alt="" width="17" height="17" decoding="async">ADLS Gen2</span></div>
+          <div class="result"><strong>Zero data loss</strong><span>with incremental loads, partitioning, and archival strategies</span></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section class="sec" id="education">
+  <div class="wrap">
+    <h2 class="rv" data-t="Education and certifications">Education and certifications</h2>
+    <div class="two">
+      <div class="rv">
+        <h3>Education</h3>
+        <ul>
+          <li>Master in Computer Applications<small>Institute of Management and Information Technology, Cuttack. 2019 to 2022</small></li>
+          <li>B.Sc in Computer Science<small>Chitalo Mohavidyalay, Jajapur Town. 2016 to 2019</small></li>
+        </ul>
+        <h3 style="margin-top:32px">Languages</h3>
+        <ul><li>English, Hindi, Odia</li></ul>
+      </div>
+      <div class="rv" style="--d:.1s">
+        <h3>Certifications and awards</h3>
+        <ul>
+          <li class="cert"><img class="lg" src="assets/logos/tech/databricks.svg" alt="" width="38" height="38" decoding="async"><div>Databricks Associate Developer: Apache Spark with Python<small><a href="https://www.coursera.org/account/accomplishments/verify/AV1LBU0MY15P" target="_blank" rel="noopener" style="color:var(--cyan)">Verify certificate</a></small></div></li>
+          <li class="cert"><img class="lg" src="assets/logos/tech/ibm.svg" alt="" width="38" height="38" decoding="async"><div>IBM Certified Full Stack Data Science<small>IBM</small></div></li>
+          <li class="cert"><img class="lg" src="assets/logos/tech/hackerrank.svg" alt="" width="38" height="38" decoding="async"><div>Python 5-star rating<small>HackerRank</small></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec contact" id="contact">
+  <div class="wrap">
+    <div class="status rv"><i class="dot"></i>Based in Bhubaneswar, Odisha</div>
+    <h2 class="rv" data-t="Have a role or a data problem? Let's talk.">Have a role or a data problem? Let's talk.</h2>
+    <div class="mail rv">
+      <button class="btn btn-p" id="copyMail" data-mag type="button">Copy email address</button>
+      <a class="btn btn-s" data-mag href="mailto:ds.sahoosatyajit@gmail.com">Send an email</a>
+    </div>
+    <ul class="contact-list">
+      <li class="rv"><a href="mailto:ds.sahoosatyajit@gmail.com"><small>Email</small><b>ds.sahoosatyajit@gmail.com</b></a></li>
+      <li class="rv" style="--d:.06s"><a href="https://www.linkedin.com/in/satyajit-sahoo01" target="_blank" rel="noopener"><small>LinkedIn</small><b>linkedin.com/in/satyajit-sahoo01</b></a></li>
+      <li class="rv" style="--d:.12s"><a href="tel:+917504789463"><small>Phone</small><b>+91 75047 89463</b></a></li>
+      <li class="rv" style="--d:.18s"><a href="https://wa.me/917504789463" target="_blank" rel="noopener"><small>WhatsApp</small><b>Message or call on WhatsApp</b></a></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">&copy; <span id="year">2026</span> Satyajit Sahoo</div></footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+'use strict';
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var fine = window.matchMedia('(pointer: fine)').matches;
+var clamp=function(v,a,b){return Math.min(b,Math.max(a,v));};
+var $=function(id){return document.getElementById(id);};
+
+/* ================= text scramble ================= */
+var GLYPHS='ABCDEFGHKMNPRSTUVWXYZ01<>/#';
+function scramble(el,final,dur){
+  el.setAttribute('aria-label',final);
+  var t0=performance.now();
+  (function f(now){
+    var t=clamp((now-t0)/dur,0,1), n=Math.floor(t*final.length), out='';
+    for(var i=0;i<final.length;i++){var ch=final.charAt(i); out+=(i<n||ch===' '||ch==="'"||ch==='?'||ch==='.'||ch===',')?ch:GLYPHS.charAt(Math.floor(Math.random()*GLYPHS.length));}
+    el.textContent=out;
+    if(t<1){requestAnimationFrame(f);}else{el.textContent=final;}
+  })(t0);
+}
+
+/* ================= boot sequence ================= */
+var bootEl=$('boot'), bootOut=$('bootOut'), bootBar=$('bootBar'), booted=false;
+var BOOT=[
+  ['cmd','$ spark-submit portfolio.py --env prod'],
+  ['tag','[INFO]','Connecting to ADLS Gen2','ok','ok'],
+  ['tag','[INFO]','Reading bronze.experience','','12.4M rows'],
+  ['tag','[INFO]','Transforming with PySpark','ok','ok'],
+  ['tag','[INFO]','Data quality checks','ok','42/42 passed'],
+  ['tag','[INFO]','Writing gold.portfolio','ok','done'],
+  ['cmd','Ready. Opening portfolio...']
+];
+function bootLine(l){
+  if(l[0]==='cmd'){return '<div class="cmd">'+l[1]+'</div>';}
+  var dots=new Array(Math.max(4,34-l[2].length)).join('.');
+  return '<div><span class="tag">'+l[1]+'</span> '+l[2]+' '+dots+' <span class="ok">'+l[4]+'</span></div>';
+}
+function finishBoot(){
+  if(booted) return; booted=true;
+  bootEl.classList.add('out');
+  document.body.classList.remove('booting');
+  document.body.classList.add('ready');
+  setTimeout(function(){bootEl.parentNode && bootEl.parentNode.removeChild(bootEl);},1000);
+  startHero();
+}
+function runBoot(){
+  if(reduce){finishBoot();return;}
+  var i=0;
+  bootEl.addEventListener('click',finishBoot);
+  document.addEventListener('keydown',function(){finishBoot();},{once:true});
+  (function next(){
+    if(booted) return;
+    if(i>=BOOT.length){setTimeout(finishBoot,500);return;}
+    bootOut.insertAdjacentHTML('beforeend',bootLine(BOOT[i]));
+    bootBar.style.width=((i+1)/BOOT.length*100)+'%';
+    i++; setTimeout(next,i===1?420:240);
+  })();
+}
+
+/* ================= typed line ================= */
+var PHRASES=['Microsoft Fabric lakehouses','Azure Databricks pipelines','Medallion architecture on Delta Lake','real-time IoT data pipelines'];
+function typeLoop(){
+  var el=$('typed'), pi=0, ci=0, del=false;
+  if(reduce){el.textContent=PHRASES[0];return;}
+  (function tick(){
+    var p=PHRASES[pi];
+    if(!del){ci++; el.textContent=p.slice(0,ci); if(ci===p.length){del=true; return setTimeout(tick,1500);} return setTimeout(tick,55);}
+    ci--; el.textContent=p.slice(0,ci);
+    if(ci===0){del=false; pi=(pi+1)%PHRASES.length; return setTimeout(tick,350);}
+    setTimeout(tick,28);
+  })();
+}
+
+/* ================= hero network canvas ================= */
+var heroEl=$('hero'), net=$('net'), nctx=net.getContext('2d');
+var NW=0,NH=0,nodes=[],packets=[],LINK=150,mouse={x:0,y:0,on:false},netRun=false,netLast=0,netRaf=0,netStarted=false;
+var rowsEl=$('rows'), rows=4182930, rowsT=0;
+function netInit(){
+  var r=heroEl.getBoundingClientRect(), d=Math.min(window.devicePixelRatio||1,2);
+  NW=r.width; NH=r.height; net.width=Math.round(NW*d); net.height=Math.round(NH*d); nctx.setTransform(d,0,0,d,0,0);
+  var n=Math.round(clamp(NW*NH/15000,38,120)); LINK=NW<700?105:150;
+  nodes=[]; packets=[];
+  for(var i=0;i<n;i++){nodes.push({x:Math.random()*NW,y:Math.random()*NH,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:1.1+Math.random()*1.7,hub:Math.random()<.12});}
+}
+function netStep(k){
+  for(var i=0;i<nodes.length;i++){
+    var n=nodes[i];
+    if(mouse.on){
+      var dx=mouse.x-n.x, dy=mouse.y-n.y, dd=Math.sqrt(dx*dx+dy*dy);
+      if(dd<220 && dd>1){var f=(1-dd/220)*.06*k; n.x+=dx/dd*f*6; n.y+=dy/dd*f*6;}
+    }
+    n.x+=n.vx*k; n.y+=n.vy*k;
+    if(n.x<0||n.x>NW){n.vx*=-1; n.x=clamp(n.x,0,NW);}
+    if(n.y<0||n.y>NH){n.vy*=-1; n.y=clamp(n.y,0,NH);}
+  }
+}
+function netDraw(k){
+  nctx.clearRect(0,0,NW,NH);
+  var L2=LINK*LINK, edges=[], i, j, a, b;
+  nctx.lineWidth=1;
+  for(i=0;i<nodes.length;i++){
+    a=nodes[i];
+    for(j=i+1;j<nodes.length;j++){
+      b=nodes[j];
+      var dx=a.x-b.x, dy=a.y-b.y, d2=dx*dx+dy*dy;
+      if(d2<L2){
+        var al=(1-Math.sqrt(d2)/LINK)*.32;
+        nctx.strokeStyle='rgba(90,165,255,'+al.toFixed(3)+')';
+        nctx.beginPath(); nctx.moveTo(a.x,a.y); nctx.lineTo(b.x,b.y); nctx.stroke();
+        if(edges.length<400){edges.push(a.x<b.x?[i,j]:[j,i]);}
+      }
+    }
+  }
+  /* data packets flowing left to right along links */
+  if(edges.length && packets.length<46 && Math.random()<.22*k){
+    var e=edges[Math.floor(Math.random()*edges.length)];
+    packets.push({a:e[0],b:e[1],t:0,sp:.012+Math.random()*.02,c:Math.random()<.55?'34,211,238':'150,130,255'});
+  }
+  nctx.globalCompositeOperation='lighter';
+  for(i=packets.length-1;i>=0;i--){
+    var p=packets[i]; p.t+=p.sp*k;
+    var pa=nodes[p.a], pb=nodes[p.b];
+    var ddx=pa.x-pb.x, ddy=pa.y-pb.y;
+    if(p.t>=1 || ddx*ddx+ddy*ddy>L2*1.7){packets.splice(i,1); continue;}
+    var px=pa.x+(pb.x-pa.x)*p.t, py=pa.y+(pb.y-pa.y)*p.t;
+    var g=nctx.createRadialGradient(px,py,0,px,py,9);
+    g.addColorStop(0,'rgba('+p.c+',.95)'); g.addColorStop(1,'rgba('+p.c+',0)');
+    nctx.fillStyle=g; nctx.beginPath(); nctx.arc(px,py,9,0,6.283); nctx.fill();
+  }
+  nctx.globalCompositeOperation='source-over';
+  for(i=0;i<nodes.length;i++){
+    a=nodes[i];
+    if(a.hub){nctx.fillStyle='rgba(90,165,255,.14)'; nctx.beginPath(); nctx.arc(a.x,a.y,a.r*5,0,6.283); nctx.fill();}
+    nctx.fillStyle=a.hub?'rgba(180,215,255,.95)':'rgba(140,190,255,.75)';
+    nctx.beginPath(); nctx.arc(a.x,a.y,a.hub?a.r*1.5:a.r,0,6.283); nctx.fill();
+  }
+  if(mouse.on){
+    var mg=nctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,130);
+    mg.addColorStop(0,'rgba(34,211,238,.18)'); mg.addColorStop(1,'rgba(34,211,238,0)');
+    nctx.fillStyle=mg; nctx.beginPath(); nctx.arc(mouse.x,mouse.y,130,0,6.283); nctx.fill();
+    for(i=0;i<nodes.length;i++){
+      a=nodes[i]; var mx=a.x-mouse.x, my=a.y-mouse.y, md=Math.sqrt(mx*mx+my*my);
+      if(md<170){nctx.strokeStyle='rgba(34,211,238,'+((1-md/170)*.75).toFixed(3)+')'; nctx.beginPath(); nctx.moveTo(mouse.x,mouse.y); nctx.lineTo(a.x,a.y); nctx.stroke();}
+    }
+  }
+}
+function netLoop(now){
+  if(!netRun) return;
+  var k=clamp((now-netLast)/16.67,0,3); netLast=now;
+  netStep(k); netDraw(k);
+  rows+=Math.round(k*(14+Math.random()*30));
+  if(now-rowsT>200){rowsEl.textContent=rows.toLocaleString('en-US'); rowsT=now;}
+  netRaf=requestAnimationFrame(netLoop);
+}
+function netStart(){ if(netRun||reduce) return; netRun=true; netLast=performance.now(); netRaf=requestAnimationFrame(netLoop); }
+function netStop(){ netRun=false; cancelAnimationFrame(netRaf); }
+function netFrame(){ netInit(); netDraw(1); }
+window.addEventListener('pointermove',function(e){
+  if(e.pointerType==='touch') return;
+  var r=heroEl.getBoundingClientRect();
+  mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top;
+  mouse.on = mouse.y>=0 && mouse.y<=r.height;
+},{passive:true});
+document.addEventListener('pointerleave',function(){mouse.on=false;});
+
+/* ================= hero startup ================= */
+function startHero(){
+  var nm=$('name');
+  if(reduce){nm.textContent=nm.dataset.text;} else {scramble(nm,nm.dataset.text,1100);}
+  typeLoop();
+  netFrame();
+  if(!reduce){
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?netStart():netStop();});}).observe(heroEl);
+    } else { netStart(); }
+    document.addEventListener('visibilitychange',function(){ if(document.hidden){netStop();} else {var r=heroEl.getBoundingClientRect(); if(r.bottom>0&&r.top<innerHeight){netStart();}} });
+  }
+}
+var rt; window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){if(booted){netFrame();}},160);});
+
+/* ================= photo: shows photo.jpg if it exists next to this file ================= */
+var pImg=$('photoImg'), pSil=$('sil');
+function photoOk(){pImg.hidden=false; pSil.hidden=true;}
+if(pImg.complete && pImg.naturalWidth>0){photoOk();} else {pImg.addEventListener('load',photoOk);}
+
+/* ================= 3D tilt (photo), project cards, magnetic buttons, cursor glow ================= */
+var glow=$('glow'), tilt=$('tilt'), stage=$('stage');
+if(fine && !reduce){
+  window.addEventListener('pointermove',function(e){
+    glow.style.transform='translate3d('+e.clientX+'px,'+e.clientY+'px,0)';
+    var r=heroEl.getBoundingClientRect();
+    if(e.clientY>=r.top && e.clientY<=r.bottom){
+      var s=stage.getBoundingClientRect(), cx=s.left+s.width/2, cy=s.top+s.height/2;
+      var ry=clamp((e.clientX-cx)/innerWidth*22,-11,11), rx=clamp(-(e.clientY-cy)/innerHeight*18,-9,9);
+      tilt.style.transform='perspective(900px) rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg)';
+      tilt.style.setProperty('--gx',(50+ry*4)+'%'); tilt.style.setProperty('--gy',(35-rx*4)+'%');
+      tilt.classList.add('on');
+    }
+  },{passive:true});
+  heroEl.addEventListener('pointerleave',function(){tilt.style.transform=''; tilt.classList.remove('on');});
+
+  document.querySelectorAll('.pc').forEach(function(c){
+    c.addEventListener('pointermove',function(e){
+      var r=c.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top;
+      c.style.setProperty('--mx',x+'px'); c.style.setProperty('--my',y+'px');
+      var ry=(x/r.width-.5)*7, rx=-(y/r.height-.5)*7;
+      c.style.transform='perspective(900px) rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg)';
+    });
+    c.addEventListener('pointerleave',function(){c.style.transform='';});
+  });
+
+  document.querySelectorAll('[data-mag]').forEach(function(b){
+    b.addEventListener('pointermove',function(e){
+      var r=b.getBoundingClientRect();
+      var dx=(e.clientX-(r.left+r.width/2))*.28, dy=(e.clientY-(r.top+r.height/2))*.4;
+      b.style.transform='translate('+dx.toFixed(1)+'px,'+dy.toFixed(1)+'px)';
+    });
+    b.addEventListener('pointerleave',function(){b.style.transform='';});
+  });
+} else { glow.style.display='none'; }
+
+/* ================= marquee + code ================= */
+var TECH=[['Microsoft Fabric','fabric/fabric'],['Azure Databricks','tech/databricks'],['Azure Data Factory','azure/data-factory'],['PySpark','tech/spark'],['Delta Lake','tech/delta-lake'],['ADLS Gen2','azure/adls-gen2'],['Python','tech/python'],['SQL','tech/sql'],['KQL','azure/kql'],['Event Hub','azure/event-hubs'],['IoT Hub','azure/iot-hub'],['Medallion Architecture','concepts/medallion'],['Azure DevOps','tech/azure-devops'],['Power BI','tech/power-bi']];
+var tr=$('track'), tHtml=TECH.map(function(t){return '<span><em class="tk"><img class="lg" src="assets/logos/'+t[1]+'.svg" alt="" width="30" height="30" decoding="async">'+t[0]+'</em></span>';}).join('');
+tr.innerHTML=tHtml+tHtml;
+
+var CODE=[
+  '<span class="k">from</span> delta.tables <span class="k">import</span> DeltaTable',
+  '<span class="k">from</span> pyspark.sql <span class="k">import</span> functions <span class="k">as</span> F',
+  '',
+  '<span class="c"># Bronze: read the raw SAP extract</span>',
+  'bronze = spark.read.parquet(<span class="s">"abfss://bronze@lake.dfs.core.windows.net/sap/orders"</span>)',
+  '',
+  '<span class="c"># Silver: deduplicate and fix types</span>',
+  'silver = (bronze',
+  '    .dropDuplicates([<span class="s">"order_id"</span>])',
+  '    .withColumn(<span class="s">"net_value"</span>, F.col(<span class="s">"net_value"</span>).cast(<span class="s">"decimal(14,2)"</span>))',
+  '    .filter(F.col(<span class="s">"order_id"</span>).isNotNull()))',
+  '',
+  '<span class="c"># Incremental load: MERGE into the Delta table</span>',
+  'target = DeltaTable.forName(spark, <span class="s">"silver.sap_orders"</span>)',
+  '(target.alias(<span class="s">"t"</span>).merge(silver.alias(<span class="s">"s"</span>), <span class="s">"t.order_id = s.order_id"</span>)',
+  '    .whenMatchedUpdateAll()',
+  '    .whenNotMatchedInsertAll()',
+  '    .execute())'
+];
+$('codeBody').innerHTML=CODE.map(function(l,i){return '<span class="ln" style="--i:'+i+'">'+(l||'&nbsp;')+'</span>';}).join('');
+
+/* ================= reveal, scramble headings, count-up ================= */
+function countUp(el){
+  var n=el.querySelector('.num'), to=+n.dataset.to, suf=n.dataset.suf||'', dec=+n.dataset.dec||0;
+  if(reduce){n.textContent=to.toFixed(dec)+suf;return;}
+  var t0=performance.now(), dur=1700;
+  (function f(now){
+    var t=clamp((now-t0)/dur,0,1), e=1-Math.pow(1-t,3);
+    n.textContent=(to*e).toFixed(dec)+suf;
+    if(t<1) requestAnimationFrame(f);
+  })(t0);
+}
+document.querySelectorAll('.m .num').forEach(function(n){if(reduce){n.textContent=n.dataset.to+(n.dataset.suf||'');}});
+var revealEls=document.querySelectorAll('.rv');
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el=e.target; el.classList.add('in'); io.unobserve(el);
+      if(el.tagName==='H2' && !reduce){scramble(el,el.dataset.t||el.textContent,900);}
+      if(el.classList.contains('m')){countUp(el);}
+    });
+  },{threshold:.18,rootMargin:'0px 0px -5% 0px'});
+  revealEls.forEach(function(el){io.observe(el);});
+} else { revealEls.forEach(function(el){el.classList.add('in');}); }
+
+/* ================= pipeline lab (interactive DAG) ================= */
+var TASKS=[
+  {id:'ot_edge',    sub:'Ignition, MQTT',    lane:'rt',col:0,row:-1,vs:0,vx:-1,dep:[],                              dur:700,  s:'realtime: Ignition edge gateway publishing tags over MQTT', e:'realtime: unified namespace streaming'},
+  {id:'sap_s4hana', sub:'OData connector',   lane:'bt',col:0,row:1, vs:0,vx:1, dep:[],                              dur:800,  s:'batch: reading SAP S/4HANA through OData', e:'batch: SAP extracts ready'},
+  {id:'iot_hub',    sub:'IoT + Event Hub',   lane:'rt',col:1,row:-1,vs:1,vx:-1,dep:['ot_edge'],                     dur:800,  s:'realtime: receiving device telemetry', e:'realtime: telemetry buffered'},
+  {id:'adf_ingest', sub:'Data Factory',      lane:'bt',col:1,row:1, vs:2,vx:1, dep:['sap_s4hana'],                     dur:1000, s:'batch: Data Factory copying SAP data', e:'batch: data copied into the lake'},
+  {id:'evt_stream', sub:'Event Streams',     lane:'rt',col:2,row:-1,vs:2,vx:-1,dep:['iot_hub'],                     dur:800,  s:'realtime: routing events into Fabric', e:'realtime: events flowing'},
+  {id:'eventhouse', sub:'KQL database',      lane:'rt',col:3,row:-1,vs:3,vx:-1,dep:['evt_stream'],                  dur:1000, s:'realtime: storing events in Eventhouse', e:'realtime: events queryable with KQL, copy sent to Bronze'},
+  {id:'activator',  sub:'Rules, triggers',  lane:'rt',col:4,row:-1,vs:4,vx:-1,dep:['eventhouse'],                  dur:800,  s:'realtime: Activator checking alert rules', e:'realtime: alert rules evaluated'},
+  {id:'bronze',     sub:'Raw data',          lane:'bt',col:4,row:0, vs:4,vx:1, dep:['eventhouse','adf_ingest'],     dur:1100, s:'writing Eventhouse and Data Factory data to the Bronze layer', e:'Bronze layer ready'},
+  {id:'alerts',     sub:'Power Automate',    lane:'rt',col:5,row:-1,vs:5,vx:-1,dep:['activator'],                   dur:700,  s:'realtime: preparing email and SMS alerts', e:'realtime: alert path ready'},
+  {id:'silver',     sub:'Spark notebook',    lane:'bt',col:5,row:0, vs:5,vx:1, dep:['bronze'],                      dur:1500, s:'batch: Spark notebook cleansing and typing the data', e:'batch: Silver tables built'},
+  {id:'gold',       sub:'Spark notebook',    lane:'bt',col:6,row:0, vs:6,vx:1, dep:['silver'],                      dur:1300, s:'batch: Spark notebook building business-ready data', e:'batch: Gold datasets ready'},
+  {id:'consume',    sub:'Power BI, apps',    lane:'bt',col:7,row:0, vs:7,vx:1, dep:['gold'],                        dur:900,  s:'batch: refreshing Power BI and serving app data', e:'batch: dashboards and apps up to date'}
+];
+var PLATFORM=[
+  {n:'Entra',             at:'start', m:'Entra ID authenticated the service identity'},
+  {n:'Key Vault',         at:'start', m:'Key Vault secrets loaded'},
+  {n:'Azure DevOps',      at:'start', m:'Azure DevOps CI/CD release deployed'},
+  {n:'Purview',           at:'bronze',m:'Purview recorded lineage for the Bronze layer'},
+  {n:'Monitor',           at:'silver',m:'Monitor is tracking pipeline metrics'},
+  {n:'Log Analytics',     at:'silver',m:'Log Analytics is collecting run logs'},
+  {n:'Defender for Cloud',at:'gold',  m:'Defender for Cloud posture checked'},
+  {n:'Cost Management',   at:'end',   m:'Cost Management recorded the run cost'}
+];
+var TICON={ot_edge:'tech/ignition',sap_s4hana:'tech/sap',iot_hub:'azure/iot-hub',adf_ingest:'azure/data-factory',evt_stream:'fabric/event-streams',eventhouse:'fabric/eventhouse',activator:'fabric/activator',bronze:'concepts/bronze',alerts:'azure/power-automate',silver:'concepts/silver',gold:'concepts/gold',consume:'tech/power-bi'};
+var PICON={'Entra':'azure/entra','Key Vault':'azure/key-vault','Azure DevOps':'tech/azure-devops','Purview':'azure/purview','Monitor':'azure/monitor','Log Analytics':'azure/log-analytics','Defender for Cloud':'azure/defender-for-cloud','Cost Management':'azure/cost-management'};
+function lgi(p){return '<img class="lg" src="assets/logos/'+p+'.svg" alt="" width="17" height="17" decoding="async">';}
+var NS='http://www.w3.org/2000/svg', dagEl=$('dag'), svg, edges=[], horiz=true, NHT=56, running=false, timers=[], t0=0, completed=0;
+var con=$('con'), progEl=$('prog'), stateEl=$('state'), runBtn=$('runBtn'), resetBtn=$('resetBtn'), autoRan=false;
+var LV={info:'INFO',ok:'OK  ',done:'DONE'};
+
+function mk(tag,cls){var e=document.createElementNS(NS,tag); if(cls) e.setAttribute('class',cls); return e;}
+function buildDag(){
+  dagEl.innerHTML=''; edges=[];
+  svg=mk('svg'); dagEl.appendChild(svg);
+  TASKS.forEach(function(t){
+    var d=document.createElement('div'); d.className='task '+t.lane;
+    d.innerHTML='<span class="lgc" aria-hidden="true">'+(TICON[t.id]?lgi(TICON[t.id]):'')+'</span><i></i><b>'+t.id+'</b><small>'+t.sub+'</small>';
+    dagEl.appendChild(d); t.el=d;
+  });
+  TASKS.forEach(function(t){
+    t.dep.forEach(function(dp){
+      var base=mk('path','base'), act=mk('path','act');
+      svg.appendChild(base); svg.appendChild(act);
+      edges.push({from:dp,to:t.id,base:base,act:act,L:0,done:false});
+    });
+  });
+}
+function byId(id){for(var i=0;i<TASKS.length;i++){if(TASKS[i].id===id) return TASKS[i];}}
+function layoutDag(){
+  var wc=dagEl.clientWidth; if(!wc) return;
+  var nw;
+  horiz=wc>=1180;
+  if(horiz){
+    nw=clamp(Math.floor((wc-7*40)/8),120,132); var gap=(wc-8*nw)/7; dagEl.style.height='250px';
+    TASKS.forEach(function(t){t.w=nw; t.x=t.col*(nw+gap); t.y=125-NHT/2+t.row*70;});
+  } else {
+    nw=Math.min(190,Math.floor((wc-12)/2)); var step=92; dagEl.style.height=(7*step+NHT)+'px';
+    TASKS.forEach(function(t){t.w=nw; t.y=t.vs*step; t.x=(wc-nw)/2+t.vx*(nw/2+6);});
+  }
+  TASKS.forEach(function(t){t.el.style.left=t.x+'px'; t.el.style.top=t.y+'px'; t.el.style.width=t.w+'px';});
+  edges.forEach(function(e){
+    var a=byId(e.from), b=byId(e.to), d;
+    if(horiz){
+      var P=16, sx=a.x+a.w, sy=a.y+NHT/2+P, tx=b.x, ty=b.y+NHT/2-P, o=Math.max((tx-sx)*.6,14);
+      d='M'+sx+','+sy+' C'+(sx+o)+','+sy+' '+(tx-o)+','+ty+' '+tx+','+ty;
+    } else {
+      var sx2=a.x+a.w/2+20, sy2=a.y+NHT, tx2=b.x+b.w/2-20, ty2=b.y, o2=Math.max((ty2-sy2)*.6,14);
+      d='M'+sx2+','+sy2+' C'+sx2+','+(sy2+o2)+' '+tx2+','+(ty2-o2)+' '+tx2+','+ty2;
+    }
+    e.base.setAttribute('d',d); e.act.setAttribute('d',d);
+    e.L=e.act.getTotalLength();
+    e.act.style.transition='none';
+    e.act.style.strokeDasharray=e.L;
+    e.act.style.strokeDashoffset=e.done?0:e.L;
+    void e.act.getBoundingClientRect();
+    e.act.style.transition='';
+  });
+}
+function setState(cls,txt){stateEl.className='state'+(cls?' '+cls:''); stateEl.textContent=txt;}
+function elapsed(){return ((performance.now()-t0)/1000).toFixed(1);}
+function log(lv,msg){
+  var row=document.createElement('div');
+  row.innerHTML='<span class="t">+'+('    '+elapsed()).slice(-5)+'s</span> <span class="lv '+lv+'">'+LV[lv]+'</span> '+msg;
+  con.appendChild(row); con.scrollTop=con.scrollHeight;
+}
+function packet(edge){
+  edge.done=true; edge.act.style.strokeDashoffset=0;
+  if(reduce) return;
+  var c=mk('circle','pkt'); c.setAttribute('r','4.5'); svg.appendChild(c);
+  var st=performance.now(), dur=650;
+  (function f(now){
+    var t=clamp((now-st)/dur,0,1), p=edge.act.getPointAtLength(edge.L*t);
+    c.setAttribute('cx',p.x); c.setAttribute('cy',p.y);
+    if(t<1){requestAnimationFrame(f);}else{svg.removeChild(c);}
+  })(st);
+}
+function taskState(t,s){t.el.classList.remove('run','ok'); if(s) t.el.classList.add(s);}
+function resetDag(){
+  timers.forEach(clearTimeout); timers=[]; running=false; completed=0;
+  TASKS.forEach(function(t){taskState(t,'');});
+  edges.forEach(function(e){e.done=false; e.act.style.strokeDashoffset=e.L;});
+  progEl.style.width='0%';
+  document.querySelectorAll('.pchip').forEach(function(c){c.classList.remove('on');});
+  con.innerHTML='<div class="idle">Press Run pipeline to start a job.</div>';
+  setState('','Idle'); runBtn.disabled=false; runBtn.textContent='Run pipeline';
+}
+function finishDag(){
+  running=false; PLATFORM.forEach(function(p){if(p.at==='end') platOn(p);});
+  log('done','Pipeline succeeded in '+elapsed()+'s. '+TASKS.length+' of '+TASKS.length+' tasks passed.');
+  setState('ok','Succeeded'); runBtn.disabled=false; runBtn.textContent='Run again';
+}
+function runDag(){
+  if(running) return;
+  autoRan=true; resetDag(); running=true; t0=performance.now();
+  con.innerHTML=''; setState('run','Running'); runBtn.disabled=true; runBtn.textContent='Running';
+  log('info','run smartfactory_pipeline --env prod');
+  if(reduce){
+    TASKS.forEach(function(t){taskState(t,'ok'); log('ok',t.id+': '+t.e);});
+    edges.forEach(function(e){e.done=true; e.act.style.strokeDashoffset=0;});
+    progEl.style.width='100%'; PLATFORM.forEach(function(p){platOn(p);}); finishDag(); return;
+  }
+  var started={}, done={};
+  function tryStart(){
+    TASKS.forEach(function(t){
+      if(started[t.id]) return;
+      if(t.dep.every(function(d){return done[d];})){started[t.id]=true; startTask(t);}
+    });
+  }
+  function startTask(t){
+    taskState(t,'run'); log('info',t.id+': '+t.s);
+    timers.push(setTimeout(function(){
+      taskState(t,'ok'); log('ok',t.id+': '+t.e); done[t.id]=true; completed++;
+      PLATFORM.forEach(function(p){if(p.at===t.id) platOn(p);});
+      progEl.style.width=(completed/TASKS.length*100)+'%';
+      edges.forEach(function(e){if(e.from===t.id) packet(e);});
+      if(completed===TASKS.length){timers.push(setTimeout(finishDag,300));}
+      else{timers.push(setTimeout(tryStart,380));}
+    },t.dur));
+  }
+  var startItems=PLATFORM.filter(function(p){return p.at==='start';});
+  startItems.forEach(function(p,i){timers.push(setTimeout(function(){platOn(p);},i*260));});
+  timers.push(setTimeout(tryStart,startItems.length*260+300));
+}
+(function(){
+  var pc=$('platform');
+  PLATFORM.forEach(function(p){var c=document.createElement('span'); c.className='pchip'; c.innerHTML='<i></i>'+(PICON[p.n]?lgi(PICON[p.n]):'')+p.n; pc.appendChild(c); p.el=c;});
+})();
+function platOn(p){
+  if(p.el.classList.contains('on')) return;
+  p.el.classList.add('on'); log('info','platform: '+p.m);
+}
+buildDag(); layoutDag();
+runBtn.addEventListener('click',runDag);
+resetBtn.addEventListener('click',resetDag);
+var lrt; window.addEventListener('resize',function(){clearTimeout(lrt);lrt=setTimeout(layoutDag,150);});
+if(document.fonts && document.fonts.ready){document.fonts.ready.then(layoutDag);}
+window.addEventListener('load',layoutDag);
+function autoRun(){
+  if(autoRan) return; autoRan=true; layoutDag();
+  if(reduce){runBtn.click(); return;}
+  runBtn.classList.add('auto');
+  setTimeout(function(){runBtn.classList.remove('auto'); if(!running){runBtn.click();}},650);
+}
+if('IntersectionObserver' in window){
+  var lio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){autoRun();}});},{threshold:.3});
+  lio.observe(dagEl);
+}
+
+/* ================= scroll: nav progress + timeline ================= */
+var bar=$('navBar'), tl=$('tl'), fill=$('tlFill'), tick=false;
+function onScroll(){
+  tick=false;
+  if(!autoRan){var dr=dagEl.getBoundingClientRect(); if(dr.height>0 && dr.top<innerHeight*.75 && dr.bottom>innerHeight*.2){autoRun();}}
+  var max=document.documentElement.scrollHeight-innerHeight;
+  bar.style.width=(max>0?clamp(scrollY/max,0,1)*100:0)+'%';
+  var r=tl.getBoundingClientRect(), prog=clamp((innerHeight*.65-r.top)/r.height,0,1);
+  fill.style.height=((r.height-20)*prog)+'px';
+}
+window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(onScroll);}},{passive:true});
+window.addEventListener('resize',onScroll);
+onScroll();
+
+/* ================= copy email + toast ================= */
+var toast=$('toast'), tt;
+function showToast(m){toast.textContent=m; toast.classList.add('show'); clearTimeout(tt); tt=setTimeout(function(){toast.classList.remove('show');},2200);}
+$('copyMail').addEventListener('click',function(){
+  var mail='ds.sahoosatyajit@gmail.com';
+  function fallback(){
+    try{var ta=document.createElement('textarea'); ta.value=mail; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); var ok=document.execCommand('copy'); document.body.removeChild(ta); showToast(ok?'Email address copied':'Copy failed. Email: '+mail);}
+    catch(e){showToast('Copy failed. Email: '+mail);}
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){navigator.clipboard.writeText(mail).then(function(){showToast('Email address copied');},fallback);}
+  else{fallback();}
+});
+$('year').textContent=new Date().getFullYear();
+
+
+runBoot();
+})();
+</script>
+</body>
+</html>
